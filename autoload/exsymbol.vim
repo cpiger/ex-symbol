@@ -55,7 +55,7 @@ function exsymbol#init_buffer()
 
     if line('$') <= 1 && g:ex_symbol_enable_help
         silent call append ( 0, s:help_text )
-        silent exec '$d'
+        silent exec '$d _'
     endif
 endfunction
 
@@ -161,7 +161,7 @@ function exsymbol#list_all()
     " add online help 
     if g:ex_symbol_enable_help
         silent call append ( 0, s:help_text )
-        silent exec '$d'
+        silent exec '$d _'
         let start_line = len(s:help_text)
     else
         let start_line = 1

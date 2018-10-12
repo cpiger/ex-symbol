@@ -39,11 +39,23 @@ if has('gui_running')
 else
     call exsymbol#register_hotkey( 2 , 1, '<leader><ESC>'   , ":EXSymbolClose<CR>"                         , 'Close window.' )
 endif
-call exsymbol#register_hotkey( 3 , 1, '<Space>'         , ":call exsymbol#toggle_zoom()<CR>"           , 'Zoom in/out project window.' )
+" call exsymbol#register_hotkey( 3 , 1, '<Space>'         , ":call exsymbol#toggle_zoom()<CR>"           , 'Zoom in/out project window.' )
+call exsymbol#register_hotkey( 3 , 1, 'z'               , ":call exsymbol#toggle_zoom()<CR>"           , 'Zoom in/out project window.' )
 call exsymbol#register_hotkey( 4 , 1, '<CR>'            , ":call exsymbol#confirm_select()<CR>"        , 'Go to the symbol define.' )
 call exsymbol#register_hotkey( 5 , 1, '<2-LeftMouse>'   , ":call exsymbol#confirm_select()<CR>"        , 'Go to the symbol define.' )
 call exsymbol#register_hotkey( 8 , 1, '<leader>r'       , ":exec 'Filter ' . @/<CR>"                   , 'Filter search result.' )
 call exsymbol#register_hotkey( 9 , 1, '<leader>d'       , ":exec 'ReverseFilter ' . @/<CR>"            , 'Reverse filter search result.' )
+call exsymbol#register_hotkey( 100, 0, '<leader>ss', ":EXSymbolList<CR>", 'List all symbols.' )
+call exsymbol#register_hotkey( 101, 0, '<leader>sq', ":EXSymbolOpen<CR>", 'Open symbols window.' )
+call exsymbol#register_hotkey( 102, 0, '<leader>sg', ":EXSymbolCWord<CR>", 'List symbols contains current word.' )
+
+if has('gui_running')
+    if has ('mac')
+        call exsymbol#register_hotkey( 102, 0, 'Ò', ":EXSymbolList<CR>:redraw<CR>/", 'List all symbols and stay in search mode.' )
+    else
+        call exsymbol#register_hotkey( 102, 0, '<M-L>', ":EXSymbolList<CR>:redraw<CR>/", 'List all symbols and stay in search mode.' )
+    endif
+endif
 "}}}
 
 call ex#register_plugin( 'exsymbol', { 'actions': ['autoclose'] } )
